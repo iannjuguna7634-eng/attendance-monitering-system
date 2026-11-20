@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Attendance | Attendance System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-shell">
+  <nav class="sidebar">
+    <a class="side-brand" href="dashboard.html">
+      <span class="brand-mark">SA</span>
+      <span>Attendance<br>System</span>
+    </a>
+    <div class="nav">
+      <a data-page="dashboard" href="dashboard.html">⌂ Dashboard</a>
+      <a data-page="students" href="students.html">👨‍🎓 Students</a>
+      <a data-page="classes" href="classes.html">📚 Classes</a>
+      <a data-page="attendance" href="attendance.html" class="active">✓ Attendance</a>
+      <a data-page="reports" href="reports.html">▤ Reports</a>
+      <a data-page="settings" href="settings.html">⚙ Settings</a>
+      <a href="index.html">↩ Home</a>
+    </div>
+    <div class="side-user">
+      <span class="avatar">AD</span>
+      <div>
+        <b id="sideUserName">Administrator</b>
+        <small id="sideUserRole">Admin</small>
+      </div>
+    </div>
+  </nav>
+
+  <div class="app-main">
+    <header class="app-top">
+      <span id="mobileTitle" class="brand dark">Attendance System</span>
+      <span></span>
+      <div class="top-actions">
+        <span id="liveDate"></span>
+        <button id="logoutBtn" class="btn outline small">Logout</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">DAILY</span>
+          <h1>Mark Attendance</h1>
+          <p>Select a class and mark Present, Late or Absent. Late is auto-suggested from class start time.</p>
+        </div>
+      </div>
+
+      <section class="panel">
+        <div class="attendance-toolbar">
+          <label>Date
+            <input id="attendanceDate" type="date">
+          </label>
+          <label>Class
+            <select id="attendanceClass">
+              <option value="">— Select class —</option>
+            </select>
+          </label>
+          <label class="search-wrap">Search
+            <input id="attendanceSearch" class="search" type="search" placeholder="Filter students…">
+          </label>
+          <div class="summary-pills">
+            <span id="attendancePresent" class="pill success">0 Present</span>
+            <span id="attendanceLate" class="pill">0 Late</span>
+            <span id="attendanceAbsent" class="pill danger">0 Absent</span>
+          </div>
+        </div>
+
+        <div id="classInfo" class="muted" style="margin:8px 0 16px;font-size:14px;"></div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Reg. No.</th>
+                <th>Course</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="attendanceTable">
+              <tr><td colspan="5" class="loading">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel-footer">
+          <p id="attendanceMessage" class="message"></p>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+            <label style="display:flex;align-items:center;gap:6px;font-size:14px;cursor:pointer;">
+              <input type="checkbox" id="autoLate" checked>
+              Auto-mark Late using class start time + grace
+            </label>
+            <button id="saveAttendance" class="btn primary">Save Attendance</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

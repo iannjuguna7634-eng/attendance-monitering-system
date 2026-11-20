@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Classes | Attendance System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-shell">
+  <nav class="sidebar">
+    <a class="side-brand" href="dashboard.html">
+      <span class="brand-mark">SA</span>
+      <span>Attendance<br>System</span>
+    </a>
+    <div class="nav">
+      <a data-page="dashboard" href="dashboard.html">⌂ Dashboard</a>
+      <a data-page="students" href="students.html">👨‍🎓 Students</a>
+      <a data-page="classes" href="classes.html" class="active">📚 Classes</a>
+      <a data-page="attendance" href="attendance.html">✓ Attendance</a>
+      <a data-page="reports" href="reports.html">▤ Reports</a>
+      <a data-page="settings" href="settings.html">⚙ Settings</a>
+      <a href="index.html">↩ Home</a>
+    </div>
+    <div class="side-user">
+      <span class="avatar">AD</span>
+      <div>
+        <b id="sideUserName">Administrator</b>
+        <small id="sideUserRole">Admin</small>
+      </div>
+    </div>
+  </nav>
+
+  <div class="app-main">
+    <header class="app-top">
+      <span id="mobileTitle" class="brand dark">Attendance System</span>
+      <span></span>
+      <div class="top-actions">
+        <span id="liveDate"></span>
+        <button id="logoutBtn" class="btn outline small">Logout</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">SCHEDULE</span>
+          <h1>Classes</h1>
+          <p>Define classes with start time and late grace period.</p>
+        </div>
+        <button id="openClassModal" class="btn primary">+ Add Class</button>
+      </div>
+
+      <section class="panel">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Class Name</th>
+                <th>Course</th>
+                <th>Start Time</th>
+                <th>Duration</th>
+                <th>Grace (min)</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="classesTable">
+              <tr><td colspan="6" class="loading">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="classModal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="classModalTitle">Add Class</h2>
+        <button data-close class="modal-close">×</button>
+      </div>
+      <form id="classForm">
+        <input type="hidden" id="editClassId">
+        <label>Class Name
+          <input id="className" required placeholder="e.g. Morning Lecture">
+        </label>
+        <label>Course (optional)
+          <input id="classCourse" placeholder="e.g. Diploma in IT">
+        </label>
+        <label>Start Time (24h)
+          <input id="classStart" type="time" required value="09:00">
+        </label>
+        <label>Duration (minutes)
+          <input id="classDuration" type="number" min="15" value="90">
+        </label>
+        <label>Grace period for Late (minutes)
+          <input id="classGrace" type="number" min="0" value="15">
+        </label>
+        <p id="classMessage" class="message"></p>
+        <div class="modal-actions">
+          <button type="button" data-close class="btn outline">Cancel</button>
+          <button type="submit" class="btn primary">Save Class</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
